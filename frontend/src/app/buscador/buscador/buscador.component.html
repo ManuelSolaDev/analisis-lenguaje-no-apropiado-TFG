@@ -1,0 +1,10 @@
+<h1>¿Qué se está hablando?</h1>
+<form [formGroup]="formConsulta" (ngSubmit)="realizarConsulta()">
+
+  <input [formGroup]="formConsulta" formControlName="terminos" type="text" placeholder="#vidaSana @Mercadona..." >
+  <input [formGroup]="formConsulta" formControlName="fechaDesde" type="date" >
+  <input [formGroup]="formConsulta" formControlName="fechaHasta" type="date" >
+  <input [formGroup]="formConsulta"  type="submit" value="Realizar búsqueda">
+</form>
+
+<p>Descubre la opinión actual de los usuarios de Twitter y emprende las acciones necesarias</p>
