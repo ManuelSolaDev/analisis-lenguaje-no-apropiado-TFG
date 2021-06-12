@@ -12,6 +12,13 @@ const ConsultaSchema = Schema({
     fechaHasta: {
         type: Date,
         required: true
+    },
+    estado:{
+        type: String,
+        default: 'procesando'
+    },
+    resultado:{
+        type: Array
     }
 }, { collection: 'consultas' });
 

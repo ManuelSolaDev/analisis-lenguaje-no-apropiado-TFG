@@ -1,10 +1,37 @@
-<h1>¿Qué se está hablando?</h1>
-<form [formGroup]="formConsulta" (ngSubmit)="realizarConsulta()">
 
-  <input [formGroup]="formConsulta" formControlName="terminos" type="text" placeholder="#vidaSana @Mercadona..." >
-  <input [formGroup]="formConsulta" formControlName="fechaDesde" type="date" >
-  <input [formGroup]="formConsulta" formControlName="fechaHasta" type="date" >
-  <input [formGroup]="formConsulta"  type="submit" value="Realizar búsqueda">
-</form>
+<div class="container">
+  <div class="row">
 
-<p>Descubre la opinión actual de los usuarios de Twitter y emprende las acciones necesarias</p>
+    <div class="col-12" id="buscador">
+      <h1>¿Qué se está hablando?</h1>
+      <form [formGroup]="formConsulta" (ngSubmit)="realizarConsulta()">
+
+        <input [formGroup]="formConsulta" formControlName="terminos" type="text" placeholder="#vidaSana @Mercadona..." >
+        <input [formGroup]="formConsulta" formControlName="fechaDesde" type="date" >
+        <input [formGroup]="formConsulta" formControlName="fechaHasta" type="date" >
+        <input [formGroup]="formConsulta"  type="submit" value="Realizar búsqueda">
+      </form>
+
+      <p>Descubre la opinión actual de los usuarios de Twitter y emprende las acciones necesarias</p>
+    </div>
+
+
+    <div class="col-12" id="tablaConsultas">
+      <button id="botonRefrescar" (click)="refrescarTabla();">Refrescar</button>
+      <table style="width:100%">
+        <tr>
+          <th>Términos</th>
+          <th>Estado</th>
+        </tr>
+
+        <tr *ngFor="let consulta of consultas">
+          <td>{{consulta.terminos}}</td>
+          <td>{{consulta.estado}}</td>
+          <td *ngIf="consulta.estado == 'terminado'"><button (click) = "verConsulta(consulta._id)">Ver</button></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -15,4 +15,15 @@ export class ConsultaService {
     console.log(data);
     return this.http.post(`${environment.base_url}/consultas/`, data);
   }
+
+  cargarConsultas(){
+    return this.http.get(environment.base_url + '/consultas/');
+  }
+
+
+
+  cargarConsulta(uid: string) { //para la página de editar/crear evento
+    if (!uid) {uid = ''; }
+    return this.http.get(environment.base_url + '/consultas/?id=' + uid);
+  }
 }

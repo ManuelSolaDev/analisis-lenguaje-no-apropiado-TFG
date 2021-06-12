@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-4" style="text-align: right;">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary">Tendencia</button>
+        <button type="button" class="btn btn-primary">Lenguaje inapropiado</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      Mercadona
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5">
+
+      <!--Sidebar-->
+      <div class="row">
+        <div class="col12">
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+            </svg>
+            <p style="margin-bottom: 0; margin-left: 5px;">Instigadores graves: {{porcentajes[2]}}%</p>
+          </div>
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <p style="margin-bottom: 0;">Instigadores medios: {{porcentajes[1]}}%</p>
+          </div>
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+            </svg>
+            <p style="margin-bottom: 0; margin-left: 5px;">Instigadores leves: {{porcentajes[0]}}%</p>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">
+        <div class="col-12 mt-4" style="text-align: left;">
+          <p>Nivel de lenguaje inapropiado:</p>
+          <canvas id="myChartNivelLenguajeInapropiado" width="400" height="400"></canvas>
+        </div>
+      </div>-->
+
+      <div class="row">
+        <div class="col-12 mt-4" style="text-align: left;">
+          <p>Mayores instigadores del odio:</p>
+          <canvas id="myChartInstigadoresOdio" width="300" height="300" style="height: 300px !important; width: 300px !important; "></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!--Parte del mapa-->
+    <div class="col-lg-7">
+      <div id="mynetwork" style="height: 350px;">
+
+      </div>
+    </div>
+
+  </div>
+
+  <!--Parte de abajo-->
+  <div class="row" style="justify-content: center;">
+    <div class="col-6" style="text-align: center;">
+      <canvas id="myChartUltimosDias" width="300" height="300" style="margin: 0 auto"></canvas>
+
+    </div>
+  </div>
+
+
+  <!--<div *ngIf="consulta !== null" id="resultado">
+    <h1 >{{consulta.terminos}}</h1>
+    <p>Desde: {{consulta.fechaDesde}}</p>
+    <p>Hasta: {{consulta.fechaHasta}}</p>
+
+  </div>-->
+
+
+</div>
+
+
