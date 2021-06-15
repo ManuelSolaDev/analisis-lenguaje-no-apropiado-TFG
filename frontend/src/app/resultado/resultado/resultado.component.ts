@@ -211,11 +211,13 @@ function drawMayoresInstigadores(nodes){
   //cogemos los 5 primeros que son los que tienen la prediccion mas alta
   let labels = [];
   let backgroundColor = [];
-  let colormap = interpolate(['yellow', 'red']);
+  let values = [];
+  let colormap = interpolate(['green', 'red']);
 
   for( let i=0; i<5; i++){
     labels.push(nodes[i].id);
     backgroundColor.push(colormap(nodes[i].mediaPrediccion))
+    values.push(nodes[i].mediaPrediccion)
   }
 
   console.log("nodes ordenados");
@@ -228,7 +230,7 @@ function drawMayoresInstigadores(nodes){
         labels: labels,
         datasets: [{
             label: 'Usuarios instigadores del odio',
-            data: [100, 90, 85, 70, 30, 10],
+            data: values,
             backgroundColor: backgroundColor,
             borderColor: backgroundColor,
             borderWidth: 1
@@ -258,10 +260,10 @@ function drawNetwork(datos) {
   var edges = [];
   var network = null;
 
-  let colormap = interpolate(['green', 'yellow', 'red']);
-  let green = colormap(0);
-  let yellow = colormap(.5);
-  let red = colormap(1);
+  let colormap = interpolate(['red', 'blue', 'green']);
+  let red = colormap(0);
+  let blue = colormap(1);
+  let green = colormap(2);
 
 
   for( let i = 0; i < datos['resultado'].length; i++){
@@ -280,13 +282,16 @@ function drawNetwork(datos) {
 
 
     }else{ //si no existia
-
+      let image = datos['resultado'][i]['foto'];
+        if(image == undefined){
+          image = '../../../assets/img/no-user-image.jpg';
+        }
       nodes.push({
         id: datos['resultado'][i]['nombre'],
         shape: "circularImage",
-        image: datos['resultado'][i]['foto'],
+        image: image,
         value: 1,
-        url: 'http://www.google.com',
+        url: datos['resultado'][i]['url_usu'],
         label: datos['resultado'][i]['nombre'],
         mediaPrediccion: parseFloat(datos['resultado'][i]['prediccion']),
         sumaPredicciones: parseFloat(datos['resultado'][i]['prediccion']),
@@ -317,10 +322,14 @@ function drawNetwork(datos) {
 
       }else{ //si no existia
         //los receptores no tienen prediccion porque non han twitteado nada
+        let image = datos['resultado'][i]['receptores'][j].split(' ')[1];
+        if(image == undefined){
+          image = '../../../assets/img/no-user-image.jpg';
+        }
         nodes.push({
           id: datos['resultado'][i]['receptores'][j].split(' ')[0],
           shape: "circularImage",
-          image: datos['resultado'][i]['receptores'][j].split(' ')[1],
+          image: image,
           value: 1,
           url: 'http://www.google.com',
           label: datos['resultado'][i]['receptores'][j].split(' ')[0]
@@ -361,7 +370,8 @@ function drawNetwork(datos) {
       }
     }
   }
-
+  console.log("nodes");
+  console.log(nodes);
   var nodesTipados = new vis.DataSet(nodes);
 
 

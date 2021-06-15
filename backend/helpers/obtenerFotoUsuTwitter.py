@@ -7,8 +7,6 @@ import tweepy
 # }
 
 usu = sys.argv[1]
-#fechaDesde = sys.argv[2]
-#fechaHasta = sys.argv[3]
 
 auth = tweepy.AppAuthHandler('5YBQ8MIZRFvWp95rndK2BBJyq', 'nWq63Jpyi3cMEAfLbRBfW4kNe1Ztync1QAvzHXwfNJ6GhaCFMo')
 api = tweepy.API(auth)

@@ -35,7 +35,6 @@ const extraeReceptores = async ( datosAnalizados ) => {
 
 
 
-    datosAnalizados[0]['texto'] = datosAnalizados[0]['texto'] + ' @mercadona @cocacola';
     //añadimos un campo receptores
     for ( let i = 0; i < datosAnalizados.length; i++){
         datosAnalizados[i]['receptores'] = [];

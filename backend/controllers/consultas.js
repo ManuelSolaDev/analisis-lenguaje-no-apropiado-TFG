@@ -39,8 +39,27 @@ async function lanzarConsulta(datos){
     let datosAnalizados = '';
 
     var spawn = require("child_process").spawn;
+    console.log("datos['terminos']");
+    console.log(datos['terminos']);
+
+    console.log("datos['fechaDesde']");
+    console.log(datos['fechaDesde']);
+
+    console.log("datos['fechaHasta']");
+    console.log(datos['fechaHasta']);
+
+    let queryTerms = "";
+    for(let i = 0; i<datos['terminos'].length; i++){
+        queryTerms+=datos['terminos'][i];
+        if(i<datos['terminos'].length-1){
+            queryTerms+="+";
+        }
+    }
+
+    console.log("queryTerms");
+    console.log(queryTerms);
     //Lo llamamos pasandole los terminos que queremos usar para recolectar la data y analizarla
-    var process = spawn('python', ["listeners/listenerTwitter.py", datos['terminos'][0], datos['fechaDesde'], datos['fechaHasta']]);
+    var process = spawn('python', ["listeners/listenerTwitter.py", queryTerms, datos['fechaDesde'], datos['fechaHasta']]);
 
     for await (const chunk1 of process.stdout) {
         tweets += chunk1;
@@ -60,12 +79,15 @@ async function lanzarConsulta(datos){
     tweets = tweets.substring(0, tweets.length - 3);
 
     tweets = '[' + tweets + ']';
-
+    console.log("teets antes de parsear");
+    console.log(tweets);
     tweets = JSON.parse(tweets);
 
     for( let i=0; i< tweets.length; i++){
+        console.log("entra: " + i);
         var processAnalyzer = spawn('python', ["analyzers/analyzer.py", tweets[i]['texto']]);
         for await (const chunk2 of processAnalyzer.stdout) {
+            console.log("prediccion: " + chunk2.toString())
             tweets[i]['prediccion'] = chunk2.toString();
         }
         
